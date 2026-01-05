@@ -40,11 +40,14 @@ keymap("v", ">", ">gv", {})
 -- reload without exiting vim
 keymap("n", "<leader>rl", "<cmd>source ~/.config/nvim/init.lua<cr>")
 
+keymap("n", "<leader>fc", "<cmd>FzfLua builtin<CR>")
 keymap("n", "<leader>ff", "<cmd>FzfLua files<CR>")
 keymap("n", "<leader>fb", "<cmd>FzfLua buffers<CR>")
 keymap("n", "<leader>fg", "<cmd>FzfLua grep_project<CR>")
 keymap("n", "<leader>fl", "<cmd>FzfLua grep_last<CR>")
 keymap("n", "<leader>fh", "<cmd>FzfLua help_tags<CR>")
+keymap("n", "<leader>fs", "<cmd>FzfLua git_stash<CR>")
+keymap("n", "<leader>fd", "<cmd>FzfLua diagnostics_document<CR>", { desc = "Previous diagnostic" }, {})
 
 -- qflist
 keymap("n", "<leader>q", "<cmd>copen<cr>", {})
@@ -57,10 +60,8 @@ keymap("n", "<leader>la", "<cmd>lua vim.lsp.buf.code_action()<CR>", { desc = 'Co
 keymap("n", "<leader>ld", "<cmd>lua vim.diagnostic.open_float()<CR>", { desc = 'Show diagnostic' }, {})
 keymap("n", "<leader>lj", "<cmd>lua vim.diagnostic.goto_next()<CR>", { desc = "Next diagnostic" }, {})
 keymap("n", "<leader>lk", "<cmd>lua vim.diagnostic.goto_prev()<CR>", { desc = "Previous diagnostic" }, {})
-keymap("n", "<leader>lb", "<cmd>lua vim.diagnostic.setqflist()<CR>", { desc = "Previous diagnostic" }, {})
+-- keymap("n", "<leader>lb", "<cmd>lua vim.diagnostic.setqflist()<CR>", { desc = "Previous diagnostic" }, {})
+keymap("n", "<leader>lb", "<cmd>FzfLua diagnostics_document<CR>", { desc = "Previous diagnostic" }, {})
+keymap("n", "<leader>lg", "<cmd>FzfLua diagnostics_workspace<CR>", { desc = "Previous diagnostic" }, {})
+keymap("n", "<leader>lr", "<cmd>FzfLua lsp_references<CR>", { desc = "References" }, {})
 keymap("n", "gd", "<cmd>lua vim.lsp.buf.definition()<CR>", { desc = "Previous diagnostic" }, {})
-
--- keymap("n", "<leader>lo", "<cmd>Lspsaga outline<cr>", { desc = "Outline" }, {})
--- keymap("n", "<leader>la", "<cmd>Lspsaga code_action<cr>", { desc = "Code action" }, {})
--- keymap("n", "<leader>lb", "<cmd>Lspsaga show_buf_diagnostics<cr>", { desc = "Show buffer diagnostic" }, {})
--- keymap("n", "<leader>li", "<cmd>LspInfo<cr>", { desc = "Lsp Info" }, {})
