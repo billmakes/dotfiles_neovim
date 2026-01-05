@@ -10,13 +10,9 @@ vim.pack.add({
         src = "https://github.com/saghen/blink.cmp",
         version = vim.version.range("^1"),
     },
-    { src = "https://github.com/vieitesss/command.nvim", version = "main" },
     { src = "https://github.com/tpope/vim-fugitive" },
-    { src = "https://github.com/github/copilot.vim" },
-    { src = "https://github.com/stevearc/oil.nvim" },
 })
 
-require("command").setup({})
 require("miniharp").setup({ show_on_autoload = true })
 require("mason").setup({})
 require('mason-lspconfig').setup()
