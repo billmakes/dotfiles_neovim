@@ -50,6 +50,14 @@
       "rev": "29c50dd622e98e2fc5e12f71fba29e3fc34f1425",
       "src": "https://github.com/vieitesss/miniharp.nvim"
     },
+    "none-ls-extras.nvim": {
+      "rev": "03955d165621300965a6d685c8f399ec7efd5785",
+      "src": "https://github.com/nvimtools/none-ls-extras.nvim"
+    },
+    "none-ls.nvim": {
+      "rev": "0b457958cb958c16850b5a1fb38bbcd982909181",
+      "src": "https://github.com/nvimtools/none-ls.nvim"
+    },
     "nvim-dap": {
       "rev": "cdfd55a133f63228c55f91378f12908cb2a78ded",
       "src": "https://github.com/mfussenegger/nvim-dap"
