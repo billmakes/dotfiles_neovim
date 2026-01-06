@@ -33,6 +33,10 @@
       "rev": "29c50dd622e98e2fc5e12f71fba29e3fc34f1425",
       "src": "https://github.com/vieitesss/miniharp.nvim"
     },
+    "nvim-eslint": {
+      "rev": "491deac6d89a5c51013fa71b63c3cc093db15dde",
+      "src": "https://github.com/esmuellert/nvim-eslint"
+    },
     "nvim-lspconfig": {
       "rev": "0b38bc74487e73489624d61396af7805af9cc75f",
       "src": "https://github.com/neovim/nvim-lspconfig"
