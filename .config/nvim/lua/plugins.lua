@@ -24,7 +24,7 @@ require("conform").setup({
 		rust = { "rustfmt", lsp_format = "fallback" },
 		-- Conform will run the first available formatter
 		javascript = { "prettierd", "prettier", stop_after_first = true },
-        bash = { "beautysh" },
+		bash = { "beautysh" },
 	},
 })
 
@@ -37,9 +37,9 @@ require("mason-tool-installer").setup({
 	ensure_installed = {
 		"lua_ls",
 		"ts_ls",
-        "bashls",
-        "beautysh",
-        "pyright",
+		"bashls",
+		"beautysh",
+		"pyright",
 		"stylua",
 		"eslint",
 		"prettierd",
