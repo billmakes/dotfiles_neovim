@@ -1,40 +1,10 @@
--- internal state for toggles
-local state = {
-	show_path = true,
-	show_branch = true,
-}
-
--- config for placeholders + highlighting
-local config = {
-	icons = {
-		path = "",
-		branch_hidden = "",
-	},
-	placeholder_hl = "StatusLineDim", -- a dim highlight group we define below
-}
-
--- helper to wrap text in a statusline highlight group
-local function hl(group, text)
-	return string.format("%%#%s#%s%%*", group, text)
-end
-
--- set (or link) the dim highlight once
-vim.api.nvim_set_hl(0, config.placeholder_hl, {}) -- create if missing
--- Link to Comment to keep it dim; adjust as you like
-vim.api.nvim_set_hl(0, config.placeholder_hl, { link = "Comment" })
-
 local function filepath()
 	local fpath = vim.fn.fnamemodify(vim.fn.expand("%"), ":~:.:h")
-
 	if fpath == "" or fpath == "." then
 		return ""
 	end
 
-	if state.show_path then
-		return string.format("%%<%s/", fpath)
-	end
-
-	return hl(config.placeholder_hl, config.icons.path .. "/")
+	return string.format("%%<%s/", fpath)
 end
 
 local function git()
@@ -44,78 +14,114 @@ local function git()
 	end
 
 	local head = git_info.head
-	local added = git_info.added and (" +" .. git_info.added) or ""
-	local changed = git_info.changed and (" ~" .. git_info.changed) or ""
-	local removed = git_info.removed and (" -" .. git_info.removed) or ""
-	if git_info.added == 0 then
-		added = ""
-	end
-	if git_info.changed == 0 then
-		changed = ""
-	end
-	if git_info.removed == 0 then
-		removed = ""
-	end
+	local added = (git_info.added and git_info.added > 0) and (" +" .. git_info.added) or ""
+	local changed = (git_info.changed and git_info.changed > 0) and (" ~" .. git_info.changed) or ""
+	local removed = (git_info.removed and git_info.removed > 0) and (" -" .. git_info.removed) or ""
 
-	if not state.show_branch then
-		head = hl(config.placeholder_hl, config.icons.branch_hidden)
-	end
-
-	return table.concat({
-		"[ ",
-		head,
-		added,
-		changed,
-		removed,
-		"]",
-	})
+	return ("[git: %s%s%s%s]"):format(head, added, changed, removed)
 end
 
 local function diagnostics()
 	local status = vim.diagnostic.status()
-
 	if not status or status == "" then
 		return ""
 	end
-
 	return "[" .. status .. "]"
+end
+
+local function uniq_sorted(list)
+	local seen, out = {}, {}
+	for _, v in ipairs(list) do
+		if v and v ~= "" and not seen[v] then
+			seen[v] = true
+			table.insert(out, v)
+		end
+	end
+	table.sort(out)
+	return out
+end
+
+local function lsps()
+	local clients = vim.lsp.get_clients({ bufnr = 0 })
+	if not clients or #clients == 0 then
+		return ""
+	end
+
+	local names = {}
+	for _, c in ipairs(clients) do
+		table.insert(names, c.name)
+	end
+
+	names = uniq_sorted(names)
+	return "[lsp: " .. table.concat(names, ",") .. "]"
+end
+
+-- LSP format-capable clients (what vim.lsp.buf.format() could use)
+local function lsp_formatters()
+	local clients = vim.lsp.get_clients({ bufnr = 0, method = "textDocument/formatting" })
+	if not clients or #clients == 0 then
+		return ""
+	end
+
+	local names = {}
+	for _, c in ipairs(clients) do
+		table.insert(names, c.name)
+	end
+
+	names = uniq_sorted(names)
+	return "[fmt: " .. table.concat(names, ",") .. "]"
+end
+
+-- Conform "will run" list for this buffer
+local function conform_formatters()
+	local ok, conform = pcall(require, "conform")
+	if not ok then
+		return ""
+	end
+
+	local list = conform.list_formatters_to_run(0)
+	if not list or #list == 0 then
+		return ""
+	end
+
+	local names = {}
+	for _, item in ipairs(list) do
+		table.insert(names, item.name or tostring(item))
+	end
+
+	names = uniq_sorted(names)
+	return "[conform: " .. table.concat(names, ",") .. "]"
+end
+
+local function join_parts(parts, sep)
+	sep = sep or " "
+	local out = {}
+	for _, p in ipairs(parts) do
+		if p and p ~= "" then
+			table.insert(out, p)
+		end
+	end
+	return table.concat(out, sep)
 end
 
 Statusline = {}
 
 function Statusline.active()
-	return table.concat({
-		"[",
-		filepath(),
-		"%t] ",
+	return join_parts({
+		"[" .. filepath() .. "%t]",
 		git(),
-		" ",
 		diagnostics(),
+		lsps(),
+		conform_formatters(),
+		lsp_formatters(),
 		"%=",
 		"%y [%P %l:%c]",
-	})
+	}, " ")
 end
 
 function Statusline.inactive()
 	return " %t"
 end
-
-function Statusline.toggle_path()
-	state.show_path = not state.show_path
-	vim.cmd("redrawstatus")
-end
-
-function Statusline.toggle_branch()
-	state.show_branch = not state.show_branch
-	vim.cmd("redrawstatus")
-end
-
-vim.keymap.set("n", "<leader>sp", function()
-	Statusline.toggle_path()
-end, { desc = "Toggle statusline path" })
-vim.keymap.set("n", "<leader>sb", function()
-	Statusline.toggle_branch()
-end, { desc = "Toggle statusline git branch" })
 
 local group = vim.api.nvim_create_augroup("Statusline", { clear = true })
 

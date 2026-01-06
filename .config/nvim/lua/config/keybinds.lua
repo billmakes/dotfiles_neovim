@@ -14,6 +14,11 @@ keymap("n", "<C-u>", "<C-u>zz")
 keymap("n", "n", "nzzzv") -- center screen when looping search results
 keymap("n", "N", "Nzzzv")
 
+-- clear search highlights when Esc is pressed
+keymap("n", "<Esc>", function()
+	vim.cmd("nohlsearch")
+end)
+
 -- paste and don't replace clipboard over deleted text
 keymap("x", "<leader>p", [["_dP]])
 keymap({ "n", "v" }, "<leader>d", [["_d]])
@@ -47,7 +52,7 @@ keymap("n", "<leader>fg", "<cmd>FzfLua grep_project<CR>")
 keymap("n", "<leader>fl", "<cmd>FzfLua grep_last<CR>")
 keymap("n", "<leader>fh", "<cmd>FzfLua help_tags<CR>")
 keymap("n", "<leader>fs", "<cmd>FzfLua git_stash<CR>")
-keymap("n", "<leader>fd", "<cmd>FzfLua diagnostics_document<CR>", { desc = "Previous diagnostic" }, {})
+keymap("n", "<leader>fd", "<cmd>FzfLua diagnostics_document<CR>", { desc = "Previous diagnostic" })
 
 -- qflist
 keymap("n", "<leader>q", "<cmd>copen<cr>", {})
@@ -55,13 +60,13 @@ keymap("n", "<leader>Q", "<cmd>cclose<cr>", {})
 
 -- Lsp
 keymap("n", "K", "<cmd>lua vim.lsp.buf.hover()<cr>", {})
-keymap("n", "<C-f>", "<cmd>lua vim.lsp.buf.format()<CR>")
-keymap("n", "<leader>la", "<cmd>lua vim.lsp.buf.code_action()<CR>", { desc = 'Code action' }, {})
-keymap("n", "<leader>ld", "<cmd>lua vim.diagnostic.open_float()<CR>", { desc = 'Show diagnostic' }, {})
-keymap("n", "<leader>lj", "<cmd>lua vim.diagnostic.goto_next()<CR>", { desc = "Next diagnostic" }, {})
-keymap("n", "<leader>lk", "<cmd>lua vim.diagnostic.goto_prev()<CR>", { desc = "Previous diagnostic" }, {})
+keymap("n", "<C-f>", "<cmd>Format<CR>")
+keymap("n", "<leader>la", "<cmd>lua vim.lsp.buf.code_action()<CR>", { desc = "Code action" })
+keymap("n", "<leader>ld", "<cmd>lua vim.diagnostic.open_float()<CR>", { desc = "Show diagnostic" })
+keymap("n", "<leader>lj", "<cmd>lua vim.diagnostic.goto_next()<CR>", { desc = "Next diagnostic" })
+keymap("n", "<leader>lk", "<cmd>lua vim.diagnostic.goto_prev()<CR>", { desc = "Previous diagnostic" })
 -- keymap("n", "<leader>lb", "<cmd>lua vim.diagnostic.setqflist()<CR>", { desc = "Previous diagnostic" }, {})
-keymap("n", "<leader>lb", "<cmd>FzfLua diagnostics_document<CR>", { desc = "Previous diagnostic" }, {})
-keymap("n", "<leader>lg", "<cmd>FzfLua diagnostics_workspace<CR>", { desc = "Previous diagnostic" }, {})
-keymap("n", "<leader>lr", "<cmd>FzfLua lsp_references<CR>", { desc = "References" }, {})
-keymap("n", "gd", "<cmd>lua vim.lsp.buf.definition()<CR>", { desc = "Previous diagnostic" }, {})
+keymap("n", "<leader>lb", "<cmd>FzfLua diagnostics_document<CR>", { desc = "Previous diagnostic" })
+keymap("n", "<leader>lg", "<cmd>FzfLua diagnostics_workspace<CR>", { desc = "Previous diagnostic" })
+keymap("n", "<leader>lr", "<cmd>FzfLua lsp_references<CR>", { desc = "References" })
+keymap("n", "gd", "<cmd>lua vim.lsp.buf.definition()<CR>", { desc = "Previous diagnostic" })

@@ -5,14 +5,23 @@ require("lsp.vscode")
 require("lsp.pyright")
 
 vim.lsp.enable({
-    "bashls",
-    "lua_ls",
-    "vtsls",
-    "cssls",
-    "jsonls",
-    "html",
-    -- "ts_ls",
-    "yamlls",
-    "pyright",
+	"bashls",
+	"lua_ls",
+	"vtsls",
+	"cssls",
+	"jsonls",
+	"html",
+	-- "ts_ls",
+	"yamlls",
+	"pyright",
 })
-vim.diagnostic.config({ signs = true })
+vim.diagnostic.config({
+	signs = true,
+	underline = true,
+	virtual_text = {
+		source = true,
+	},
+	float = {
+		source = true,
+	},
+})
