@@ -1,8 +1,7 @@
 vim.pack.add({
 	{ src = "https://github.com/nvim-lua/plenary.nvim" },
-	{ src = "https://github.com/nvimtools/none-ls.nvim" },
-	{ src = "https://github.com/nvimtools/none-ls-extras.nvim" },
 	{ src = "https://github.com/neovim/nvim-lspconfig" },
+	{ src = "https://github.com/stevearc/conform.nvim" },
 	{ src = "https://github.com/mason-org/mason.nvim" },
 	{ src = "https://github.com/mason-org/mason-lspconfig.nvim" },
 	{ src = "https://github.com/WhoIsSethDaniel/mason-tool-installer.nvim" },
@@ -11,29 +10,39 @@ vim.pack.add({
 	{ src = "https://github.com/lewis6991/gitsigns.nvim" },
 	{
 		src = "https://github.com/saghen/blink.cmp",
-		{ src = "https://github.com/nvimtools/none-ls.nvim" },
 		version = vim.version.range("^1"),
 	},
 	{ src = "https://github.com/tpope/vim-fugitive" },
 })
 
-local null_ls = require("null-ls")
-
-null_ls.setup({
-	sources = {
-		null_ls.builtins.formatting.stylua,
-		null_ls.builtins.formatting.black,
-		require("none-ls.diagnostics.eslint"), -- requires none-ls-extras.nvim
+require("conform").setup({
+	formatters_by_ft = {
+		lua = { "stylua" },
+		-- Conform will run multiple formatters sequentially
+		python = { "isort", "black" },
+		-- You can customize some of the format options for the filetype (:help conform.format)
+		rust = { "rustfmt", lsp_format = "fallback" },
+		-- Conform will run the first available formatter
+		javascript = { "prettierd", "prettier", stop_after_first = true },
+        bash = { "beautysh" },
 	},
 })
+
 require("miniharp").setup({ show_on_autoload = true })
 require("mason").setup({})
-require("mason-lspconfig").setup()
+require("mason-lspconfig").setup({
+	automatic_enable = true,
+})
 require("mason-tool-installer").setup({
 	ensure_installed = {
 		"lua_ls",
+		"ts_ls",
+        "bashls",
+        "beautysh",
+        "pyright",
 		"stylua",
 		"eslint",
+		"prettierd",
 	},
 })
 

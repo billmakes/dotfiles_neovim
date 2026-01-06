@@ -1,13 +1,9 @@
-vim.lsp.enable({
-	"bashls",
-	"gopls",
-	"lua_ls",
-	"texlab",
-	"ts_ls",
-	"rust-analyzer",
-	-- "helm_ls",
-	"yamlls",
-	-- "pyright",
-})
+-- vim.lsp.enable({
+-- 	"bashls",
+-- 	"lua_ls",
+-- 	"ts_ls",
+-- 	"yamlls",
+-- 	"pyright",
+-- })
 
-vim.diagnostic.config({ signs = true })
+-- vim.diagnostic.config({ signs = true })
