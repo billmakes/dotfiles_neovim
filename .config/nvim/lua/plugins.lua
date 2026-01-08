@@ -26,6 +26,8 @@ require("conform").setup({
 		-- Conform will run the first available formatter
 		javascript = { "prettierd", "prettier", stop_after_first = true },
 		javascriptreact = { "prettierd", "prettier", stop_after_first = true },
+		typescript = { "prettierd", "prettier", stop_after_first = true },
+		typescriptreact = { "prettierd", "prettier", stop_after_first = true },
 		bash = { "beautysh" },
 	},
 })
@@ -138,6 +140,7 @@ require("blink.cmp").setup({
 	signature = { enabled = true },
 	keymap = {
 		preset = "default",
+		["<CR>"] = { "accept", "fallback" },
 		["<C-space>"] = {},
 		["<C-p>"] = {},
 		["<Tab>"] = {},
