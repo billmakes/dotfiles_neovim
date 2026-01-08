@@ -1,11 +1,15 @@
 vim.pack.add({
 	{ src = "https://github.com/nvim-lua/plenary.nvim" },
+	{ src = "https://github.com/nvim-treesitter/nvim-treesitter" },
 	{ src = "https://github.com/neovim/nvim-lspconfig" },
 	{ src = "https://github.com/stevearc/conform.nvim" },
 	{ src = "https://github.com/esmuellert/nvim-eslint" },
 	{ src = "https://github.com/mason-org/mason.nvim" },
 	{ src = "https://github.com/mason-org/mason-lspconfig.nvim" },
 	-- { src = "https://github.com/WhoIsSethDaniel/mason-tool-installer.nvim" },
+	{ src = "https://github.com/stevearc/oil.nvim" },
+	{ src = "https://github.com/benomahony/oil-git-status.nvim" },
+	{ src = "https://github.com/JezerM/oil-lsp-diagnostics.nvim" },
 	{ src = "https://github.com/vieitesss/miniharp.nvim" },
 	{ src = "https://github.com/ibhagwan/fzf-lua" },
 	{ src = "https://github.com/lewis6991/gitsigns.nvim" },
@@ -47,6 +51,47 @@ vim.api.nvim_create_user_command("Format", function(args)
 end, { range = true })
 
 require("nvim-eslint").setup({})
+
+require("oil").setup({
+	win_options = {
+		signcolumn = "yes:2",
+	},
+	view_options = {
+		show_hidden = true,
+	},
+})
+
+require("oil-git-status").setup({
+	show_ignored = true,
+	symbols = {
+		index = {
+			["!"] = "!",
+			["?"] = "?",
+			["A"] = "A",
+			["C"] = "C",
+			["D"] = "D",
+			["M"] = "M",
+			["R"] = "R",
+			["T"] = "T",
+			["U"] = "U",
+			[" "] = " ",
+		},
+		working_tree = {
+			["!"] = "!",
+			["?"] = "?",
+			["A"] = "A",
+			["C"] = "C",
+			["D"] = "D",
+			["M"] = "M",
+			["R"] = "R",
+			["T"] = "T",
+			["U"] = "U",
+			[" "] = " ",
+		},
+	},
+})
+
+require("oil-lsp-diagnostics").setup({})
 
 require("miniharp").setup({ show_on_autoload = true })
 require("mason").setup({})

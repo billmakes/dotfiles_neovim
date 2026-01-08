@@ -1,7 +1,7 @@
 local keymap = vim.keymap.set
 -- KEYBINDS
 vim.g.mapleader = " "
-keymap("n", "<leader>e", vim.cmd.Ex)
+keymap("n", "<leader>e", vim.cmd.Oil)
 
 keymap("v", "J", ":m '>+1<CR>gv=gv") -- Alt Up/Down in vscode
 keymap("v", "K", ":m '<-2<CR>gv=gv")
