@@ -10,7 +10,6 @@ vim.pack.add({
 	{ src = "https://github.com/stevearc/oil.nvim" },
 	{ src = "https://github.com/benomahony/oil-git-status.nvim" },
 	{ src = "https://github.com/JezerM/oil-lsp-diagnostics.nvim" },
-	{ src = "https://github.com/vieitesss/miniharp.nvim" },
 	{ src = "https://github.com/ibhagwan/fzf-lua" },
 	{ src = "https://github.com/lewis6991/gitsigns.nvim" },
 	{
@@ -18,6 +17,7 @@ vim.pack.add({
 		version = vim.version.range("^1"),
 	},
 	{ src = "https://github.com/tpope/vim-fugitive" },
+	{ src = "https://github.com/tpope/vim-rhubarb" },
 })
 
 require("conform").setup({
@@ -93,8 +93,9 @@ require("oil-git-status").setup({
 
 require("oil-lsp-diagnostics").setup({})
 
-require("miniharp").setup({ show_on_autoload = true })
+
 require("mason").setup({})
+
 require("mason-lspconfig").setup({
 	automatic_enable = {
 		exclude = {

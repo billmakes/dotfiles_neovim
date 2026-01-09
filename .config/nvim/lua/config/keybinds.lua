@@ -70,9 +70,3 @@ keymap("n", "<leader>lb", "<cmd>FzfLua diagnostics_document<CR>", { desc = "Prev
 keymap("n", "<leader>lg", "<cmd>FzfLua diagnostics_workspace<CR>", { desc = "Previous diagnostic" })
 keymap("n", "<leader>lr", "<cmd>FzfLua lsp_references<CR>", { desc = "References" })
 keymap("n", "gd", "<cmd>lua vim.lsp.buf.definition()<CR>", { desc = "Previous diagnostic" })
-
--- miniharp
-keymap("n", "<leader>m", require("miniharp").toggle_file, { desc = "miniharp: toggle file mark" })
-keymap("n", "<C-n>", require("miniharp").next, { desc = "miniharp: next file mark" })
-keymap("n", "<C-p>", require("miniharp").prev, { desc = "miniharp: prev file mark" })
-keymap("n", "<leader>lm", require("miniharp").show_list, { desc = "miniharp: list marks" })
