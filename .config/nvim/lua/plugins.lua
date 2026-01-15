@@ -93,7 +93,6 @@ require("oil-git-status").setup({
 
 require("oil-lsp-diagnostics").setup({})
 
-
 require("mason").setup({})
 
 require("mason-lspconfig").setup({
