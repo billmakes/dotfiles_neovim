@@ -12,12 +12,14 @@ vim.pack.add({
 	{ src = "https://github.com/JezerM/oil-lsp-diagnostics.nvim" },
 	{ src = "https://github.com/ibhagwan/fzf-lua" },
 	{ src = "https://github.com/lewis6991/gitsigns.nvim" },
+	{ src = "https://github.com/j-hui/fidget.nvim" },
 	{
 		src = "https://github.com/saghen/blink.cmp",
 		version = vim.version.range("^1"),
 	},
 	{ src = "https://github.com/tpope/vim-fugitive" },
 	{ src = "https://github.com/tpope/vim-rhubarb" },
+	{ src = "https://github.com/greggh/claude-code.nvim" },
 })
 
 require("conform").setup({
@@ -180,6 +182,8 @@ require("gitsigns").setup({
 	end,
 })
 
+require("fidget").setup({})
+
 require("blink.cmp").setup({
 	fuzzy = { implementation = "prefer_rust_with_warning" },
 	signature = { enabled = true },
@@ -256,3 +260,5 @@ require("fzf-lua").setup({
 		},
 	},
 })
+
+require("claude-code").setup()

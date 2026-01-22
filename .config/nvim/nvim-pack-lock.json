@@ -5,6 +5,10 @@
       "src": "https://github.com/saghen/blink.cmp",
       "version": "1.0.0 - 2.0.0"
     },
+    "claude-code.nvim": {
+      "rev": "c9a31e51069977edaad9560473b5d031fcc5d38b",
+      "src": "https://github.com/greggh/claude-code.nvim"
+    },
     "codediff.nvim": {
       "rev": "e6d0efcf20197b266deeb8e4b6a2bbe7f0e8c6ec",
       "src": "https://github.com/esmuellert/codediff.nvim"
@@ -16,6 +20,10 @@
     "diffview.nvim": {
       "rev": "4516612fe98ff56ae0415a259ff6361a89419b0a",
       "src": "https://github.com/sindrets/diffview.nvim"
+    },
+    "fidget.nvim": {
+      "rev": "7fa433a83118a70fe24c1ce88d5f0bd3453c0970",
+      "src": "https://github.com/j-hui/fidget.nvim"
     },
     "fzf-lua": {
       "rev": "a03d68e40eea835a1cdbd9f93049708dab3621e6",
@@ -60,6 +68,10 @@
     "nvim-treesitter": {
       "rev": "de878155ca66c49b027b1380e4e60a6c665b2630",
       "src": "https://github.com/nvim-treesitter/nvim-treesitter"
+    },
+    "nvim-treesitter-textobjects": {
+      "rev": "5ca4aaa6efdcc59be46b95a3e876300cfead05ef",
+      "src": "https://github.com/nvim-treesitter/nvim-treesitter-textobjects"
     },
     "oil-git-status.nvim": {
       "rev": "4b5cf53842c17a09420919e655a6a559da3112d7",
