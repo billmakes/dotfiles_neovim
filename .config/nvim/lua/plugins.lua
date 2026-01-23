@@ -20,6 +20,7 @@ vim.pack.add({
 	{ src = "https://github.com/tpope/vim-fugitive" },
 	{ src = "https://github.com/tpope/vim-rhubarb" },
 	{ src = "https://github.com/greggh/claude-code.nvim" },
+    { src = "https://github.com/billmakes/react_tree.nvim" },
 })
 
 require("conform").setup({
@@ -277,3 +278,4 @@ require("fzf-lua").setup({
 })
 
 require("claude-code").setup()
+require("react_tree").setup()
