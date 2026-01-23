@@ -91,6 +91,7 @@ keymap("n", "<leader>fd", "<cmd>FzfLua diagnostics_document<CR>") -- Document di
 -------------------------------------------------------------------------------
 keymap("n", "K", "<cmd>lua vim.lsp.buf.hover()<cr>", {})           -- Show hover documentation
 keymap("n", "gd", "<cmd>lua vim.lsp.buf.definition()<CR>")         -- Go to definition
+keymap("n", "gr", "<cmd>lua vim.lsp.buf.references()<CR>")         -- Show references
 keymap("n", "<C-f>", "<cmd>Format<CR>")                            -- Format buffer
 keymap("n", "<leader>la", "<cmd>lua vim.lsp.buf.code_action()<CR>") -- Code action menu
 keymap("n", "<leader>ld", "<cmd>lua vim.diagnostic.open_float()<CR>") -- Show diagnostic in float

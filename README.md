@@ -1,99 +1,219 @@
 # Neovim Keybinds Documentation
 
-This document provides a simple and organized overview of all the custom keybinds defined in my Neovim configuration.
+This document provides an organized overview of all the custom keybinds defined in my Neovim configuration.
 
-## General Keybinds
+**Leader key:** `<Space>`
 
-| Mode | Key             | Action                                                                                      |
-|------|-----------------|---------------------------------------------------------------------------------------------|
-| `n`  | `<leader>e`    | Open Ex mode (`:Ex`)                                                                        |
-| `n`  | `J`             | Join lines while keeping the cursor in place                                                |
-| `n`  | `<C-d>`         | Scroll half-page down and keep the cursor centered                                          |
-| `n`  | `<C-u>`         | Scroll half-page up and keep the cursor centered                                            |
-| `n`  | `n`             | Move to next search result and keep it centered                                             |
-| `n`  | `N`             | Move to previous search result and keep it centered                                         |
-| `n`  | `Q`             | Disable Ex mode                                                                             |
-| `n`  | `<C-k>`         | Jump to next quickfix entry and keep it centered                                            |
-| `n`  | `<C-j>`         | Jump to previous quickfix entry and keep it centered                                        |
-| `n`  | `<leader>k`     | Jump to next location entry and keep it centered                                            |
-| `n`  | `<leader>j`     | Jump to previous location entry and keep it centered                                        |
-| `i`  | `<C-c>`         | Exit insert mode (acts like `Esc`)                                                          |
-| `n`  | `<leader>rl`    | Reload the Neovim config (`~/.config/nvim/init.lua`)                                        |
+## Navigation & Scrolling
+
+| Mode | Key        | Action                                        |
+|------|------------|-----------------------------------------------|
+| `n`  | `<C-d>`    | Scroll down half page, keep cursor centered   |
+| `n`  | `<C-u>`    | Scroll up half page, keep cursor centered     |
+| `n`  | `n`        | Next search result, keep cursor centered      |
+| `n`  | `N`        | Previous search result, keep cursor centered  |
+| `n`  | `<S-TAB>`  | Switch to previous buffer                     |
 
 ---
 
-## Visual Mode Keybinds
+## File Explorer (Oil)
 
-| Mode | Key             | Action                                                                                      |
-|------|-----------------|---------------------------------------------------------------------------------------------|
-| `v`  | `J`             | Move selected block down                                                                    |
-| `v`  | `K`             | Move selected block up                                                                      |
-| `x`  | `<leader>p`     | Paste without overwriting clipboard                                                         |
-| `v`  | `<leader>y`     | Yank into system clipboard (even on SSH)                                                    |
+| Mode | Key         | Action                  |
+|------|-------------|-------------------------|
+| `n`  | `<leader>e` | Open Oil file explorer  |
 
 ---
 
-## Linting and Formatting
+## Line Manipulation
 
-| Mode | Key             | Action                                                                                      |
-|------|-----------------|---------------------------------------------------------------------------------------------|
-| `n`  | `<leader>cc`    | Run `php-cs-fixer` to lint and format PHP files                                             |
-| `n`  | `<F3>`          | Format code (`LSP`)                                                                         |
-
----
-
-## Telescope Keybinds
-
-| Mode | Key             | Action                                                                                      |
-|------|-----------------|---------------------------------------------------------------------------------------------|
-| `n`  | `<leader>ff`    | Find files                                                                                  |
-| `n`  | `<leader>fg`    | Find git-tracked files                                                                      |
-| `n`  | `<leader>fo`    | Open recent files                                                                           |
-| `n`  | `<leader>fq`    | Open quickfix list                                                                          |
-| `n`  | `<leader>fh`    | Open help tags                                                                              |
-| `n`  | `<leader>fb`    | Open buffer list                                                                            |
-| `n`  | `<leader>fs`    | Grep current string                                                                         |
-| `n`  | `<leader>fc`    | Grep instances of the current file name without the extension                               |
-| `n`  | `<leader>fi`    | Find files in Neovim configuration directory (`~/.config/nvim/`)                            |
+| Mode | Key | Action                            |
+|------|-----|-----------------------------------|
+| `n`  | `J` | Join lines without moving cursor  |
+| `v`  | `J` | Move selected lines down          |
+| `v`  | `K` | Move selected lines up            |
 
 ---
 
-## Harpoon Integration
+## Indentation (Visual Mode)
 
-| Mode | Key             | Action                                                                                      |
-|------|-----------------|---------------------------------------------------------------------------------------------|
-| `n`  | `<leader>a`     | Add current file to Harpoon list                                                            |
-| `n`  | `<C-e>`         | Toggle Harpoon quick menu                                                                   |
-| `n`  | `<leader>fl`    | Open Harpoon window with Telescope                                                          |
-| `n`  | `<C-p>`         | Go to previous Harpoon mark                                                                 |
-| `n`  | `<C-n>`         | Go to next Harpoon mark                                                                     |
+| Mode | Key | Action                     |
+|------|-----|----------------------------|
+| `v`  | `<` | Indent left and reselect   |
+| `v`  | `>` | Indent right and reselect  |
 
 ---
 
-## LSP Keybinds
+## Clipboard & Delete Operations
 
-| Mode      | Key        | Action                                                                                      |
-|-----------|------------|---------------------------------------------------------------------------------------------|
-| `n`       | `K`        | Show hover information                                                                      |
-| `n`       | `gd`       | Go to definition                                                                            |
-| `n`       | `gD`       | Go to declaration                                                                           |
-| `n`       | `gi`       | Go to implementation                                                                        |
-| `n`       | `go`       | Go to type definition                                                                       |
-| `n`       | `gr`       | Show references                                                                             |
-| `n`       | `gs`       | Show signature help                                                                         |
-| `n`       | `gl`       | Show diagnostics in a floating window                                                       |
-| `n`       | `<F2>`     | Rename symbol                                                                               |
-| `n`, `x`  | `<C-f>`     | Format code asynchronously                                                                 |
-| `n`       | `<F4>`     | Show code actions                                                                           |
+| Mode     | Key         | Action                            |
+|----------|-------------|-----------------------------------|
+| `x`      | `<leader>p` | Paste without replacing clipboard |
+| `n`, `v` | `<leader>d` | Delete to black hole register     |
 
 ---
 
-## Miscellaneous
+## Search & Replace
 
-| Mode | Key             | Action                                                                                      |
-|------|-----------------|---------------------------------------------------------------------------------------------|
-| `n`  | `<leader>s`     | Replace all instances of the word under the cursor on the current line                      |
+| Mode | Key         | Action                                |
+|------|-------------|---------------------------------------|
+| `n`  | `<Esc>`     | Clear search highlights               |
+| `n`  | `<leader>s` | Replace word under cursor (on line)   |
 
 ---
 
-Let me know if you want to modify or add descriptions for any specific keybinds!
+## Quickfix List
+
+| Mode | Key         | Action                                      |
+|------|-------------|---------------------------------------------|
+| `n`  | `<C-k>`     | Next quickfix item (centered)               |
+| `n`  | `<C-j>`     | Previous quickfix item (centered)           |
+| `n`  | `<leader>q` | Open quickfix list                          |
+| `n`  | `<leader>Q` | Close quickfix list                         |
+
+---
+
+## Location List
+
+| Mode | Key         | Action                                      |
+|------|-------------|---------------------------------------------|
+| `n`  | `<leader>k` | Next location list item (centered)          |
+| `n`  | `<leader>j` | Previous location list item (centered)      |
+
+---
+
+## Mode & Config
+
+| Mode | Key          | Action                       |
+|------|--------------|------------------------------|
+| `i`  | `<C-c>`      | Escape insert mode           |
+| `n`  | `Q`          | Disabled (no-op)             |
+| `n`  | `<leader>rl` | Reload Neovim config         |
+
+---
+
+## FzfLua (Fuzzy Finder)
+
+| Mode | Key         | Action                         |
+|------|-------------|--------------------------------|
+| `n`  | `<leader>fc`| Open FzfLua command picker     |
+| `n`  | `<leader>ff`| Find files in git repo         |
+| `n`  | `<leader>fb`| List open buffers              |
+| `n`  | `<leader>fg`| Grep across project            |
+| `n`  | `<leader>fl`| Repeat last grep               |
+| `n`  | `<leader>fh`| Search help tags               |
+| `n`  | `<leader>fs`| Browse git stash               |
+| `n`  | `<leader>fd`| Document diagnostics           |
+
+### FzfLua Window Keybinds
+
+| Context  | Key       | Action                    |
+|----------|-----------|---------------------------|
+| builtin  | `<C-f>`   | Scroll preview down       |
+| builtin  | `<C-b>`   | Scroll preview up         |
+| builtin  | `<C-p>`   | Toggle preview pane       |
+| fzf      | `ctrl-a`  | Toggle all selections     |
+| fzf      | `ctrl-t`  | Jump to first result      |
+| fzf      | `ctrl-g`  | Jump to last result       |
+| fzf      | `ctrl-d`  | Scroll results down       |
+| fzf      | `ctrl-u`  | Scroll results up         |
+
+### FzfLua File Actions
+
+| Key       | Action                              |
+|-----------|-------------------------------------|
+| `ctrl-q`  | Send selection to quickfix          |
+| `ctrl-n`  | Toggle gitignore filter             |
+| `ctrl-h`  | Toggle hidden files                 |
+| `enter`   | Open file or send multiple to qf    |
+
+---
+
+## LSP
+
+| Mode | Key         | Action                          |
+|------|-------------|---------------------------------|
+| `n`  | `K`         | Show hover documentation        |
+| `n`  | `gd`        | Go to definition                |
+| `n`  | `gr`        | Show references                 |
+| `n`  | `<C-f>`     | Format buffer                   |
+| `n`  | `<leader>la`| Code action menu                |
+| `n`  | `<leader>ld`| Show diagnostic in float        |
+| `n`  | `<leader>lj`| Next diagnostic                 |
+| `n`  | `<leader>lk`| Previous diagnostic             |
+| `n`  | `<leader>lb`| List buffer diagnostics (FzfLua)|
+| `n`  | `<leader>lg`| List workspace diagnostics      |
+| `n`  | `<leader>lr`| List references (FzfLua)        |
+
+---
+
+## Gitsigns
+
+### Hunk Navigation
+
+| Mode | Key  | Action                              |
+|------|------|-------------------------------------|
+| `n`  | `]c` | Next git hunk (or diff change)      |
+| `n`  | `[c` | Previous git hunk (or diff change)  |
+
+### Staging & Reset
+
+| Mode | Key          | Action                    |
+|------|--------------|---------------------------|
+| `n`  | `<leader>hs` | Stage hunk under cursor   |
+| `n`  | `<leader>hr` | Reset hunk under cursor   |
+| `v`  | `<leader>hs` | Stage selected lines      |
+| `v`  | `<leader>hr` | Reset selected lines      |
+| `n`  | `<leader>hS` | Stage entire buffer       |
+| `n`  | `<leader>hR` | Reset entire buffer       |
+
+### Preview & Diff
+
+| Mode | Key          | Action                    |
+|------|--------------|---------------------------|
+| `n`  | `<leader>hp` | Preview hunk in popup     |
+| `n`  | `<leader>hi` | Preview hunk inline       |
+| `n`  | `<leader>hd` | Diff against index        |
+| `n`  | `<leader>hD` | Diff against last commit  |
+
+### Blame & Quickfix
+
+| Mode | Key          | Action                            |
+|------|--------------|-----------------------------------|
+| `n`  | `<leader>hb` | Show full blame for current line  |
+| `n`  | `<leader>hq` | Send buffer hunks to quickfix     |
+| `n`  | `<leader>hQ` | Send all hunks to quickfix        |
+
+### Toggles
+
+| Mode | Key          | Action                |
+|------|--------------|-----------------------|
+| `n`  | `<leader>tb` | Toggle inline blame   |
+| `n`  | `<leader>tw` | Toggle word diff      |
+
+### Text Object
+
+| Mode     | Key  | Action              |
+|----------|------|---------------------|
+| `o`, `x` | `ih` | Select hunk (inner) |
+
+---
+
+## Blink.cmp (Completion)
+
+| Mode | Key       | Action                              |
+|------|-----------|-------------------------------------|
+| `i`  | `<CR>`    | Accept completion or newline        |
+| `i`  | `<C-y>`   | Toggle completion/docs              |
+| `i`  | `<C-n>`   | Select and accept completion        |
+| `i`  | `<C-k>`   | Select previous item                |
+| `i`  | `<C-j>`   | Select next item                    |
+| `i`  | `<C-b>`   | Scroll docs down                    |
+| `i`  | `<C-f>`   | Scroll docs up                      |
+| `i`  | `<C-l>`   | Jump to next snippet placeholder    |
+| `i`  | `<C-h>`   | Jump to previous snippet placeholder|
+
+### Command Line Completion
+
+| Mode | Key    | Action                      |
+|------|--------|-----------------------------|
+| `c`  | `<CR>` | Accept and execute command  |
