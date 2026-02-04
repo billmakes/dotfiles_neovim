@@ -17,6 +17,10 @@
       "rev": "8314f4c9e205e7f30b62147069729f9a1227d8bf",
       "src": "https://github.com/stevearc/conform.nvim"
     },
+    "context.vim": {
+      "rev": "82eb26de265292808917b82f3eda2725b53d785c",
+      "src": "https://github.com/wellle/context.vim"
+    },
     "diffview.nvim": {
       "rev": "4516612fe98ff56ae0415a259ff6361a89419b0a",
       "src": "https://github.com/sindrets/diffview.nvim"

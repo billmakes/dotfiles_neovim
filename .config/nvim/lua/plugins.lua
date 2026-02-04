@@ -1,6 +1,7 @@
 vim.pack.add({
 	{ src = "https://github.com/nvim-lua/plenary.nvim" },
 	{ src = "https://github.com/nvim-treesitter/nvim-treesitter" },
+	{ src = "https://github.com/wellle/context.vim" },
 	{ src = "https://github.com/neovim/nvim-lspconfig" },
 	{ src = "https://github.com/stevearc/conform.nvim" },
 	{ src = "https://github.com/esmuellert/nvim-eslint" },
@@ -20,7 +21,7 @@ vim.pack.add({
 	{ src = "https://github.com/tpope/vim-fugitive" },
 	{ src = "https://github.com/tpope/vim-rhubarb" },
 	{ src = "https://github.com/greggh/claude-code.nvim" },
-    { src = "https://github.com/billmakes/react_tree.nvim" },
+	{ src = "https://github.com/billmakes/react_tree.nvim" },
 })
 
 require("conform").setup({
@@ -147,23 +148,23 @@ require("gitsigns").setup({
 		-----------------------------------------------------------------------
 		-- Staging & Reset
 		-----------------------------------------------------------------------
-		map("n", "<leader>hs", gitsigns.stage_hunk)    -- Stage hunk under cursor
-		map("n", "<leader>hr", gitsigns.reset_hunk)    -- Reset hunk under cursor
+		map("n", "<leader>hs", gitsigns.stage_hunk) -- Stage hunk under cursor
+		map("n", "<leader>hr", gitsigns.reset_hunk) -- Reset hunk under cursor
 		map("v", "<leader>hs", function()
 			gitsigns.stage_hunk({ vim.fn.line("."), vim.fn.line("v") })
 		end) -- Stage selected lines
 		map("v", "<leader>hr", function()
 			gitsigns.reset_hunk({ vim.fn.line("."), vim.fn.line("v") })
 		end) -- Reset selected lines
-		map("n", "<leader>hS", gitsigns.stage_buffer)  -- Stage entire buffer
-		map("n", "<leader>hR", gitsigns.reset_buffer)  -- Reset entire buffer
+		map("n", "<leader>hS", gitsigns.stage_buffer) -- Stage entire buffer
+		map("n", "<leader>hR", gitsigns.reset_buffer) -- Reset entire buffer
 
 		-----------------------------------------------------------------------
 		-- Preview & Diff
 		-----------------------------------------------------------------------
-		map("n", "<leader>hp", gitsigns.preview_hunk)        -- Preview hunk in popup
+		map("n", "<leader>hp", gitsigns.preview_hunk) -- Preview hunk in popup
 		map("n", "<leader>hi", gitsigns.preview_hunk_inline) -- Preview hunk inline
-		map("n", "<leader>hd", gitsigns.diffthis)            -- Diff against index
+		map("n", "<leader>hd", gitsigns.diffthis) -- Diff against index
 		map("n", "<leader>hD", function()
 			gitsigns.diffthis("~")
 		end) -- Diff against last commit
@@ -178,7 +179,7 @@ require("gitsigns").setup({
 		-----------------------------------------------------------------------
 		-- Quickfix
 		-----------------------------------------------------------------------
-		map("n", "<leader>hq", gitsigns.setqflist)     -- Send buffer hunks to quickfix
+		map("n", "<leader>hq", gitsigns.setqflist) -- Send buffer hunks to quickfix
 		map("n", "<leader>hQ", function()
 			gitsigns.setqflist("all")
 		end) -- Send all hunks to quickfix
@@ -187,7 +188,7 @@ require("gitsigns").setup({
 		-- Toggles
 		-----------------------------------------------------------------------
 		map("n", "<leader>tb", gitsigns.toggle_current_line_blame) -- Toggle inline blame
-		map("n", "<leader>tw", gitsigns.toggle_word_diff)          -- Toggle word diff
+		map("n", "<leader>tw", gitsigns.toggle_word_diff) -- Toggle word diff
 
 		-----------------------------------------------------------------------
 		-- Text Object
@@ -203,18 +204,18 @@ require("blink.cmp").setup({
 	signature = { enabled = true },
 	keymap = {
 		preset = "default",
-		["<CR>"] = { "accept", "fallback" },      -- Accept completion or newline
-		["<C-space>"] = {},                        -- Disabled
-		["<C-p>"] = {},                            -- Disabled
-		["<Tab>"] = {},                            -- Disabled
-		["<S-Tab>"] = {},                          -- Disabled
+		["<CR>"] = { "accept", "fallback" }, -- Accept completion or newline
+		["<C-space>"] = {}, -- Disabled
+		["<C-p>"] = {}, -- Disabled
+		["<Tab>"] = {}, -- Disabled
+		["<S-Tab>"] = {}, -- Disabled
 		["<C-y>"] = { "show", "show_documentation", "hide_documentation" }, -- Toggle completion/docs
-		["<C-n>"] = { "select_and_accept" },       -- Select and accept completion
+		["<C-n>"] = { "select_and_accept" }, -- Select and accept completion
 		["<C-k>"] = { "select_prev", "fallback" }, -- Select previous item
 		["<C-j>"] = { "select_next", "fallback" }, -- Select next item
 		["<C-b>"] = { "scroll_documentation_down", "fallback" }, -- Scroll docs down
-		["<C-f>"] = { "scroll_documentation_up", "fallback" },   -- Scroll docs up
-		["<C-l>"] = { "snippet_forward", "fallback" },  -- Jump to next snippet placeholder
+		["<C-f>"] = { "scroll_documentation_up", "fallback" }, -- Scroll docs up
+		["<C-l>"] = { "snippet_forward", "fallback" }, -- Jump to next snippet placeholder
 		["<C-h>"] = { "snippet_backward", "fallback" }, -- Jump to previous snippet placeholder
 	},
 
@@ -254,24 +255,24 @@ require("fzf-lua").setup({
 		-- Neovim builtin keymaps (work in results pane)
 		builtin = {
 			["<C-f>"] = "preview-page-down", -- Scroll preview down
-			["<C-b>"] = "preview-page-up",   -- Scroll preview up
-			["<C-p>"] = "toggle-preview",    -- Toggle preview pane
+			["<C-b>"] = "preview-page-up", -- Scroll preview up
+			["<C-p>"] = "toggle-preview", -- Toggle preview pane
 		},
 		-- FZF keymaps (work in fuzzy finder input)
 		fzf = {
-			["ctrl-a"] = "toggle-all",    -- Toggle all selections
-			["ctrl-t"] = "first",         -- Jump to first result
-			["ctrl-g"] = "last",          -- Jump to last result
+			["ctrl-a"] = "toggle-all", -- Toggle all selections
+			["ctrl-t"] = "first", -- Jump to first result
+			["ctrl-g"] = "last", -- Jump to last result
 			["ctrl-d"] = "half-page-down", -- Scroll results down
-			["ctrl-u"] = "half-page-up",   -- Scroll results up
+			["ctrl-u"] = "half-page-up", -- Scroll results up
 		},
 	},
 	actions = {
 		-- File picker actions
 		files = {
 			["ctrl-q"] = actions.file_sel_to_qf, -- Send selection to quickfix
-			["ctrl-n"] = actions.toggle_ignore,  -- Toggle gitignore filter
-			["ctrl-h"] = actions.toggle_hidden,  -- Toggle hidden files
+			["ctrl-n"] = actions.toggle_ignore, -- Toggle gitignore filter
+			["ctrl-h"] = actions.toggle_hidden, -- Toggle hidden files
 			["enter"] = actions.file_edit_or_qf, -- Open file or send multiple to quickfix
 		},
 	},
