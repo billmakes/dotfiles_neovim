@@ -1,3 +1,19 @@
+<DIRECTIONS>
+hello
+</DIRECTIONS>
+<Context>
+You receive a selection in neovim that you need to replace with new code.
+The selection's contents may contain notes, incorporate the notes every time if there are some.
+consider the context of the selection and what you are suppose to be implementing
+<SELECTION_LOCATION>
+range(point(388,1),point(390,5))
+</SELECTION_LOCATION>
+<SELECTION_CONTENT>
+vim.keymap.set("v", "<leader>9v", function()
+	_99.visual()
+end)
+</SELECTION_CONTENT>
+<FILE_CONTAINING_SELECTION>
 vim.pack.add({
 	{ src = "https://github.com/nvim-lua/plenary.nvim" },
 	{ src = "https://github.com/nvim-treesitter/nvim-treesitter" },
@@ -7,6 +23,7 @@ vim.pack.add({
 	{ src = "https://github.com/esmuellert/nvim-eslint" },
 	{ src = "https://github.com/mason-org/mason.nvim" },
 	{ src = "https://github.com/mason-org/mason-lspconfig.nvim" },
+	-- { src = "https://github.com/WhoIsSethDaniel/mason-tool-installer.nvim" },
 	{ src = "https://github.com/stevearc/oil.nvim" },
 	{ src = "https://github.com/benomahony/oil-git-status.nvim" },
 	{ src = "https://github.com/JezerM/oil-lsp-diagnostics.nvim" },
@@ -19,7 +36,9 @@ vim.pack.add({
 	},
 	{ src = "https://github.com/tpope/vim-fugitive" },
 	{ src = "https://github.com/tpope/vim-rhubarb" },
-	{ src = "https://github.com/MagicDuck/grug-far.nvim" },
+	{ src = "https://github.com/barrettruth/diffs.nvim" },
+	{ src = "https://github.com/hrsh7th/nvim-cmp" }, 
+	{ src = "https://github.com/ThePrimeagen/99" },
 })
 
 local ok_ts, ts_configs = pcall(require, "nvim-treesitter.configs")
@@ -230,8 +249,6 @@ require("gitsigns").setup({
 
 require("fidget").setup({})
 
-require("grug-far").setup({})
-
 require("blink.cmp").setup({
 	fuzzy = { implementation = "prefer_rust_with_warning" },
 	signature = { enabled = true },
@@ -274,55 +291,137 @@ require("blink.cmp").setup({
 	sources = { default = { "lsp" } },
 })
 
--------------------------------------------------------------------------------
--- FzfLua (Fuzzy Finder) - clean defaults + toggles
--------------------------------------------------------------------------------
-local fzf = require("fzf-lua")
 local actions = require("fzf-lua.actions")
-
-fzf.setup({
-	-- Files: use rg to enumerate files (fast + respects globs)
-	files = {
-		cmd = table.concat({
-			"rg --files",
-			"--hidden",
-			"--follow",
-			"--no-messages",
-			"--glob '!.git/**'",
-			"--glob '!node_modules/**'",
-			"--glob '!dist/**'",
-			"--glob '!build/**'",
-			"--glob '!target/**'",
-			"--glob '!.cache/**'",
-		}, " "),
-	},
-
-	-- Grep: let fzf-lua manage live_grep reloading; just give it rg options
-	grep = {
-		actions = {
-			["ctrl-q"] = actions.file_sel_to_qf,
+require("fzf-lua").setup({
+	winopts = {
+		height = 1,
+		width = 1,
+		backdrop = 85,
+		preview = {
+			horizontal = "right:70%",
 		},
-		rg_opts = table.concat({
-			"--column",
-			"--line-number",
-			"--no-heading",
-			"--color=always",
-			"--smart-case",
-			"--hidden",
-			"--follow",
-			"--no-messages",
-			"--glob",
-			"!.git/**",
-			"--glob",
-			"!node_modules/**",
-			"--glob",
-			"!dist/**",
-			"--glob",
-			"!build/**",
-			"--glob",
-			"!target/**",
-			"--glob",
-			"!.cache/**",
-		}, " "),
+	},
+	keymap = {
+		-- Neovim builtin keymaps (work in results pane)
+		builtin = {
+			["<C-f>"] = "preview-page-down", -- Scroll preview down
+			["<C-b>"] = "preview-page-up", -- Scroll preview up
+			["<C-p>"] = "toggle-preview", -- Toggle preview pane
+		},
+		-- FZF keymaps (work in fuzzy finder input)
+		fzf = {
+			["ctrl-a"] = "toggle-all", -- Toggle all selections
+			["ctrl-t"] = "first", -- Jump to first result
+			["ctrl-g"] = "last", -- Jump to last result
+			["ctrl-d"] = "half-page-down", -- Scroll results down
+			["ctrl-u"] = "half-page-up", -- Scroll results up
+		},
+	},
+	actions = {
+		-- File picker actions
+		files = {
+			["ctrl-q"] = actions.file_sel_to_qf, -- Send selection to quickfix
+			["ctrl-n"] = actions.toggle_ignore, -- Toggle gitignore filter
+			["ctrl-h"] = actions.toggle_hidden, -- Toggle hidden files
+			["enter"] = actions.file_edit_or_qf, -- Open file or send multiple to quickfix
+		},
 	},
 })
+local _99 = require("99")
+
+-- For logging that is to a file if you wish to trace through requests
+-- for reporting bugs, i would not rely on this, but instead the provided
+-- logging mechanisms within 99.  This is for more debugging purposes
+local cwd = vim.uv.cwd()
+local basename = vim.fs.basename(cwd)
+
+_99.setup({
+	provider = _99.ClaudeCodeProvider,  -- default: OpenCodeProvider
+	logger = {
+		level = _99.DEBUG,
+		path = "/tmp/" .. basename .. ".99.debug",
+		print_on_error = true,
+	},
+
+	--- Completions: #rules and @files in the prompt buffer
+	completion = {
+		-- I am going to disable these until i understand the
+		-- problem better.  Inside of cursor rules there is also
+		-- application rules, which means i need to apply these
+		-- differently
+		-- cursor_rules = "<custom path to cursor rules>"
+
+		--- A list of folders where you have your own SKILL.md
+		--- Expected format:
+		--- /path/to/dir/<skill_name>/SKILL.md
+		---
+		--- Example:
+		--- Input Path:
+		--- "scratch/custom_rules/"
+		---
+		--- Output Rules:
+		--- {path = "scratch/custom_rules/vim/SKILL.md", name = "vim"},
+		--- ... the other rules in that dir ...
+		---
+		custom_rules = {
+			"scratch/custom_rules/",
+		},
+
+		--- Configure @file completion (all fields optional, sensible defaults)
+		files = {
+			-- enabled = true,
+			-- max_file_size = 102400,     -- bytes, skip files larger than this
+			-- max_files = 5000,            -- cap on total discovered files
+			-- exclude = { ".env", ".env.*", "node_modules", ".git", ... },
+		},
+
+		--- What autocomplete do you use.  We currently only
+		--- support cmp right now
+		source = "cmp",
+	},
+
+	--- WARNING: if you change cwd then this is likely broken
+	--- ill likely fix this in a later change
+	---
+	--- md_files is a list of files to look for and auto add based on the location
+	--- of the originating request.  That means if you are at /foo/bar/baz.lua
+	--- the system will automagically look for:
+	--- /foo/bar/AGENT.md
+	--- /foo/AGENT.md
+	--- assuming that /foo is project root (based on cwd)
+	md_files = {
+		"AGENT.md",
+	},
+})
+
+-- take extra note that i have visual selection only in v mode
+-- technically whatever your last visual selection is, will be used
+-- so i have this set to visual mode so i dont screw up and use an
+-- old visual selection
+--
+-- likely ill add a mode check and assert on required visual mode
+-- so just prepare for it now
+vim.keymap.set("v", "<leader>9v", function()
+	_99.visual()
+end)
+
+--- if you have a request you dont want to make any changes, just cancel it
+vim.keymap.set("v", "<leader>9s", function()
+	_99.stop_all_requests()
+end)
+</FILE_CONTAINING_SELECTION>
+
+</Context>
+
+<MustObey>
+NEVER alter any file other than TEMP_FILE.
+never provide the requested changes as conversational output. Return only the code.
+ONLY provide requested changes by writing the change to TEMP_FILE
+
+never attempt to read TEMP_FILE.
+It is purely for output.
+Previous contents, which may not exist, can be written over without worry
+After writing TEMP_FILE once you should be done.  Be done and end the session.
+
+</MustObey>
+<TEMP_FILE>/home/bill/dotfiles/neovim/.config/nvim/lua/tmp/99-7942</TEMP_FILE>

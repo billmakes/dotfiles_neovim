@@ -1,5 +1,9 @@
 {
   "plugins": {
+    "99": {
+      "rev": "96f3682ea890a3f2037aafa253c92d0dd3b82161",
+      "src": "https://github.com/ThePrimeagen/99"
+    },
     "blink.cmp": {
       "rev": "b19413d214068f316c78978b08264ed1c41830ec",
       "src": "https://github.com/saghen/blink.cmp",
@@ -21,6 +25,10 @@
       "rev": "82eb26de265292808917b82f3eda2725b53d785c",
       "src": "https://github.com/wellle/context.vim"
     },
+    "diffs.nvim": {
+      "rev": "4008df355829dffc0f8dd690c6fe61c520fa95fb",
+      "src": "https://github.com/barrettruth/diffs.nvim"
+    },
     "diffview.nvim": {
       "rev": "4516612fe98ff56ae0415a259ff6361a89419b0a",
       "src": "https://github.com/sindrets/diffview.nvim"
@@ -36,6 +44,10 @@
     "gitsigns.nvim": {
       "rev": "6bd29494e3f79ff08be1d35bc1926ed23c22ed9a",
       "src": "https://github.com/lewis6991/gitsigns.nvim"
+    },
+    "grug-far.nvim": {
+      "rev": "275dbedc96e61a6b8d1dfb28ba51586ddd233dcf",
+      "src": "https://github.com/MagicDuck/grug-far.nvim"
     },
     "koda.nvim": {
       "rev": "e4b4cebbafe0d0e500c5c55188f4388c0a352e08",
@@ -60,6 +72,10 @@
     "nui.nvim": {
       "rev": "de740991c12411b663994b2860f1a4fd0937c130",
       "src": "https://github.com/MunifTanjim/nui.nvim"
+    },
+    "nvim-cmp": {
+      "rev": "da88697d7f45d16852c6b2769dc52387d1ddc45f",
+      "src": "https://github.com/hrsh7th/nvim-cmp"
     },
     "nvim-eslint": {
       "rev": "491deac6d89a5c51013fa71b63c3cc093db15dde",
