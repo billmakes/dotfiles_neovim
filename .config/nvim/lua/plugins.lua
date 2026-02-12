@@ -19,7 +19,6 @@ vim.pack.add({
 	},
 	{ src = "https://github.com/tpope/vim-fugitive" },
 	{ src = "https://github.com/tpope/vim-rhubarb" },
-	{ src = "https://github.com/MagicDuck/grug-far.nvim" },
 })
 
 local ok_ts, ts_configs = pcall(require, "nvim-treesitter.configs")
@@ -229,8 +228,6 @@ require("gitsigns").setup({
 })
 
 require("fidget").setup({})
-
-require("grug-far").setup({})
 
 require("blink.cmp").setup({
 	fuzzy = { implementation = "prefer_rust_with_warning" },
