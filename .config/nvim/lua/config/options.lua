@@ -53,6 +53,3 @@ set.incsearch = true
 
 -- faster cursor hold
 set.updatetime = 50
-
--- spell check
-set.spell = true
