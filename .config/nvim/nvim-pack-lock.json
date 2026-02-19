@@ -69,6 +69,10 @@
       "rev": "29c50dd622e98e2fc5e12f71fba29e3fc34f1425",
       "src": "https://github.com/vieitesss/miniharp.nvim"
     },
+    "neogit": {
+      "rev": "22433eae87236c217e0810c836fa5e529c043d4c",
+      "src": "https://github.com/NeogitOrg/neogit"
+    },
     "nui.nvim": {
       "rev": "de740991c12411b663994b2860f1a4fd0937c130",
       "src": "https://github.com/MunifTanjim/nui.nvim"

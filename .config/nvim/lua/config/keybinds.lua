@@ -77,7 +77,7 @@ keymap("n", "<leader>rl", "<cmd>source ~/.config/nvim/init.lua<cr>") -- Reload N
 -------------------------------------------------------------------------------
 -- FzfLua (Fuzzy Finder)
 -------------------------------------------------------------------------------
-keymap("n", "<leader>fc", "<cmd>FzfLua builtin<CR>")       -- Open FzfLua command picker
+keymap("n", "<leader>fc", "<cmd>FzfLua builtin<CR>") -- Open FzfLua command picker
 keymap("n", "<leader>ff", "<cmd>FzfLua files<CR>") -- Find files in git repo
 keymap("n", "<leader>fb", "<cmd>FzfLua buffers<CR>") -- List open buffers
 keymap("n", "<leader>fg", "<cmd>FzfLua live_grep<CR>")
@@ -91,6 +91,8 @@ keymap("n", "<leader>fr", "<cmd>FzfLua resume<CR>") -- Document diagnostics
 -------------------------------------------------------------------------------
 -- LSP
 -------------------------------------------------------------------------------
+
+keymap("x", "<leader>gl", ":<C-u>execute 'Git log -L ' . line(\"'<\") . ',' . line(\"'>\") . ':%'<CR>")
 keymap("n", "K", "<cmd>lua vim.lsp.buf.hover()<cr>", {}) -- Show hover documentation
 keymap("n", "gd", "<cmd>lua vim.lsp.buf.definition()<CR>") -- Go to definition
 keymap("n", "gr", "<cmd>lua vim.lsp.buf.references()<CR>") -- Show references
@@ -102,3 +104,7 @@ keymap("n", "<leader>lk", "<cmd>lua vim.diagnostic.goto_prev()<CR>") -- Previous
 keymap("n", "<leader>lb", "<cmd>FzfLua diagnostics_document<CR>") -- List buffer diagnostics
 keymap("n", "<leader>lg", "<cmd>FzfLua diagnostics_workspace<CR>") -- List workspace diagnostics
 keymap("n", "<leader>lr", "<cmd>FzfLua lsp_references<CR>") -- List references
+
+
+
+keymap("n", "<leader>gg", "<cmd>Neogit<CR>") -- Browse git stash
