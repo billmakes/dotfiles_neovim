@@ -1,3 +1,4 @@
+-- keymaps
 local keymap = vim.keymap.set
 
 -- Leader key

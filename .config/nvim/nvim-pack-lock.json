@@ -97,6 +97,10 @@
       "rev": "5ca4aaa6efdcc59be46b95a3e876300cfead05ef",
       "src": "https://github.com/nvim-treesitter/nvim-treesitter-textobjects"
     },
+    "nvim-web-devicons": {
+      "rev": "746ffbb17975ebd6c40142362eee1b0249969c5c",
+      "src": "https://github.com/nvim-tree/nvim-web-devicons"
+    },
     "oil-git-status.nvim": {
       "rev": "4b5cf53842c17a09420919e655a6a559da3112d7",
       "src": "https://github.com/benomahony/oil-git-status.nvim"

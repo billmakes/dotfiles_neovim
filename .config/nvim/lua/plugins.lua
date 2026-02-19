@@ -1,5 +1,4 @@
 vim.pack.add({
-
 	{ src = "https://github.com/nvim-lua/plenary.nvim" },
 	{ src = "https://github.com/sindrets/diffview.nvim" },
 	{ src = "https://github.com/NeogitOrg/neogit" },
@@ -22,6 +21,7 @@ vim.pack.add({
 	},
 	{ src = "https://github.com/tpope/vim-fugitive" },
 	{ src = "https://github.com/tpope/vim-rhubarb" },
+	{ src = "https://github.com/nvim-tree/nvim-web-devicons" },
 })
 
 local ok_ts, ts_configs = pcall(require, "nvim-treesitter.configs")
