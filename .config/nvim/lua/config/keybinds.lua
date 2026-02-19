@@ -108,4 +108,4 @@ keymap("n", "<leader>lr", "<cmd>FzfLua lsp_references<CR>") -- List references
 
 
 
-keymap("n", "<leader>gg", "<cmd>Neogit<CR>") -- Browse git stash
+keymap("n", "<leader>gg", "<cmd>Git<CR>") -- Browse git stash

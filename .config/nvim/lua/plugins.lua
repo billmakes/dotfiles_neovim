@@ -1,7 +1,5 @@
 vim.pack.add({
 	{ src = "https://github.com/nvim-lua/plenary.nvim" },
-	{ src = "https://github.com/sindrets/diffview.nvim" },
-	{ src = "https://github.com/NeogitOrg/neogit" },
 	{ src = "https://github.com/nvim-treesitter/nvim-treesitter" },
 	{ src = "https://github.com/wellle/context.vim" },
 	{ src = "https://github.com/neovim/nvim-lspconfig" },
