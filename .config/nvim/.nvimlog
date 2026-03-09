@@ -1,0 +1,2 @@
+WRN 2026-03-01T00:00:18.919 ?.84538    server_start:197: Failed to start server: operation not permitted: /run/user/1000/nvim.84538.0
+WRN 2026-03-01T00:00:18.964 ?.84538    server_start:197: Failed to start server: operation not permitted: /run/user/1000/fzf-lua.1772341218.84538.1

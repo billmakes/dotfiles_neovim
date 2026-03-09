@@ -1,6 +1,7 @@
 require("plugins")
 require("statusline")
 require("config.options")
+vim.cmd.colorscheme("custom")
 require("config.keybinds")
 require("config.autocmds")
 require("lsp")
